@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AddressBook.Data;
 using Microsoft.EntityFrameworkCore;
+using AddressBook.Services.Interfaces;
+using AddressBook.Services;
 
 namespace AddressBook
 {
@@ -28,7 +30,9 @@ namespace AddressBook
             // we added this line of code in the third video
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-        
+
+            services.AddScoped<IImageService, BasicImageService>();
+
         services.AddControllersWithViews();
         
         }
